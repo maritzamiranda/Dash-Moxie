@@ -35,7 +35,7 @@ df = pd.DataFrame(data, columns=columnas)
 df['Date'] = pd.to_datetime(df['Date'])
 
 # Crear la aplicación Dash
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, server=Flask(__name__))
 
 # Layout de la aplicación
 app.layout = html.Div([

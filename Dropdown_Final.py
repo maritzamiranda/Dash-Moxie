@@ -1,11 +1,10 @@
 import dash
-from dash import dcc
-from dash import html
+from dash import dcc, html
 import pandas as pd
 import plotly.express as px
-from dash.dependencies import Input
-from dash.dependencies import Output
+from dash.dependencies import Input, Output
 import pymysql
+from flask import Flask
 
 # Variables para la conexión a la BD en AWS
 host = 'db-nikki.c32w48gkahsu.us-east-1.rds.amazonaws.com'
@@ -34,10 +33,13 @@ conn.close()
 df = pd.DataFrame(data, columns=columnas)
 df['Date'] = pd.to_datetime(df['Date'])
 
-# Crear la aplicación Dash
-app = dash.Dash(__name__, server=Flask(__name__))
+# Inicializar la aplicación Flask
+server = Flask(__name__)
 
-# Layout de la aplicación
+# Crear la aplicación Dash integrada en la aplicación Flask
+app = dash.Dash(__name__, server=server)
+
+# Layout de la aplicación Dash
 app.layout = html.Div([
     html.Div([
         dcc.Dropdown(
@@ -102,6 +104,6 @@ def update_figures(n, group_by):
 
     return [line_fig, tree_fig]
 
-# Ejecutar la aplicación
+# Ejecutar la aplicación Flask con la aplicación Dash integrada
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    server.run(debug=True)

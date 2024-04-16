@@ -1,8 +1,10 @@
 import dash
-from dash import dcc, html
+from dash import dcc
+from dash import html
 import pandas as pd
 import plotly.express as px
-from dash.dependencies import Input, Output
+from dash.dependencies import Input
+from dash.dependencies import Output
 import pymysql
 
 # Variables para la conexión a la BD en AWS
@@ -34,7 +36,6 @@ df['Date'] = pd.to_datetime(df['Date'])
 
 # Crear la aplicación Dash
 app = dash.Dash(__name__)
-server = app.server
 
 # Layout de la aplicación
 app.layout = html.Div([

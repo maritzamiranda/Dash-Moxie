@@ -106,6 +106,3 @@ def update_figures(n, group_by):
 # Ejecutar la aplicación
 if __name__ == '__main__':
     app.run_server(debug=True)
-    host = '127.0.0.1'  # Cambia esto al host de tu servidor si no es localhost
-    port = 8050  # Cambia esto al puerto en el que se está ejecutando tu servidor Dash
-    print(f'URL de la aplicación: http://{host}:{port}/')

@@ -1,4 +1,0 @@
-dash==2.6.0
-flask
-pandas
-pymysql
